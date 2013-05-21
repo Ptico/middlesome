@@ -5,3 +5,4 @@ module Middlesome
 end
 
 require 'middlesome/middleware'
+require 'middlesome/stack'

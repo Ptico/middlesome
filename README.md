@@ -1,5 +1,8 @@
 # Middlesome
 
+- [![Code Climate](https://codeclimate.com/github/Ptico/middlesome.png)](https://codeclimate.com/github/Ptico/middlesome)
+
+
 TODO: Write a gem description
 
 ## Installation

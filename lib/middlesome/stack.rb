@@ -1,3 +1,7 @@
+require 'forwardable'
+
+require 'middlesome/middleware'
+
 module Middlesome
 
   ##
@@ -7,6 +11,11 @@ module Middlesome
   #
   class Stack
     include ::Enumerable
+    extend ::Forwardable
+
+    attr_reader :middlewares
+
+    def_delegators :middlewares, :[], :length
 
     ##
     # Push middleware to the stack
@@ -21,7 +30,7 @@ module Middlesome
     # Yields: Middleware initialization block
     #
     def use(middleware, *args, &block)
-      
+      middlewares << Middleware.new(middleware, *args, &block)
     end
 
     ##
@@ -90,5 +99,12 @@ module Middlesome
     def delete_all(middleware, &block)
       
     end
+
+  private
+
+    def initialize
+      @middlewares = []
+    end
+
   end
 end

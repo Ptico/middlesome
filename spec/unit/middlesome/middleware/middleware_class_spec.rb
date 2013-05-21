@@ -18,4 +18,12 @@ describe Middlesome::Middleware, '#middleware_class' do
       expect(subject).to eql(Object::Hash)
     end
   end
+
+  context 'when constant not exists' do
+    let(:obj) { 'Lol::Const' }
+
+    it 'should raise exception' do
+      expect { subject }.to raise_error
+    end
+  end
 end
