@@ -7,7 +7,7 @@ describe Middlesome::Middleware, '#middleware_class' do
     let(:obj) { Object::Hash }
 
     it 'should return class' do
-      expect(subject).to eql(Object::Hash)
+      expect(subject).to be_eql(Object::Hash)
     end
   end
 
@@ -15,7 +15,7 @@ describe Middlesome::Middleware, '#middleware_class' do
     let(:obj) { 'Object::Hash' }
 
     it 'should return class' do
-      expect(subject).to eql(Object::Hash)
+      expect(subject).to be_eql(Object::Hash)
     end
   end
 

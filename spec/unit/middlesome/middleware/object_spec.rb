@@ -16,7 +16,7 @@ describe Middlesome::Middleware, '#object' do
     let(:obj) { MiddlewareOne }
 
     it 'should be constant' do
-      expect(subject).to eql(MiddlewareOne)
+      expect(subject).to be_eql(MiddlewareOne)
     end
   end
 end

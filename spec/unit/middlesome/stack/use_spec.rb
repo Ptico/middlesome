@@ -7,17 +7,17 @@ describe Middlesome::Stack, '#use' do
     instance.use(:MiddlewareOne)
     instance.use(:MiddlewareTwo)
 
-    expect(instance.length).to eql(2)
-    expect(instance[0].name).to eql("MiddlewareOne")
-    expect(instance[1].name).to eql("MiddlewareTwo")
+    expect(instance.length).to  be_eql(2)
+    expect(instance[0].name).to be_eql("MiddlewareOne")
+    expect(instance[1].name).to be_eql("MiddlewareTwo")
   end
 
   it 'should pass arguments for middlewares' do
     instance.use(:MiddlewareOne, 'foo', 'bar')
     instance.use(:MiddlewareTwo, {})
 
-    expect(instance[0].args).to eql(['foo', 'bar'])
-    expect(instance[1].args).to eql([{}])
+    expect(instance[0].args).to be_eql(['foo', 'bar'])
+    expect(instance[1].args).to be_eql([{}])
   end
 
   it 'should pass block for middlewares' do
@@ -32,6 +32,6 @@ describe Middlesome::Stack, '#use' do
     instance.use(:MiddlewareOne, 'foo', 'bar') { puts }
 
     expect(instance[0].block).to be_a(Proc)
-    expect(instance[0].args).to  eql(['foo', 'bar'])
+    expect(instance[0].args).to  be_eql(['foo', 'bar'])
   end
 end

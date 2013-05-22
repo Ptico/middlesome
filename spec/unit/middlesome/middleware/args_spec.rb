@@ -7,7 +7,7 @@ describe Middlesome::Middleware, '#args' do
     let(:arguments) { nil }
 
     it 'should be empty' do
-      expect(subject.length).to eql(0)
+      expect(subject.length).to be_eql(0)
     end
   end
 
@@ -15,7 +15,7 @@ describe Middlesome::Middleware, '#args' do
     let(:arguments) { 'foo' }
   
     it 'should have one argument' do
-      expect(subject).to eql(['foo'])
+      expect(subject).to be_eql(['foo'])
     end
   end
 
@@ -23,7 +23,7 @@ describe Middlesome::Middleware, '#args' do
     let(:arguments) { %w(foo bar) }
 
     it 'should have it all' do
-      expect(subject).to eql(['foo', 'bar'])
+      expect(subject).to be_eql(['foo', 'bar'])
     end
   end
 end

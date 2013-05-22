@@ -7,7 +7,7 @@ describe Middlesome::Middleware, '#name' do
     let(:obj) { 'Array' }
 
     it 'should be the same' do
-      expect(subject).to eql('Array')
+      expect(subject).to be_eql('Array')
     end
   end
 
@@ -15,7 +15,7 @@ describe Middlesome::Middleware, '#name' do
     let(:obj) { :Array }
 
     it 'should be string' do
-      expect(subject).to eql('Array')
+      expect(subject).to be_eql('Array')
     end
   end
 
@@ -23,7 +23,7 @@ describe Middlesome::Middleware, '#name' do
     let(:obj) { '::Array' }
 
     it 'should normalize name' do
-      expect(subject).to eql('Array')
+      expect(subject).to be_eql('Array')
     end
   end
 
@@ -31,7 +31,7 @@ describe Middlesome::Middleware, '#name' do
     let(:obj) { ' Array ' }
 
     it 'should normalize name' do
-      expect(subject).to eql('Array')
+      expect(subject).to be_eql('Array')
     end
   end
 
@@ -39,7 +39,7 @@ describe Middlesome::Middleware, '#name' do
     let(:obj) { Array }
 
     it 'should convert to string' do
-      expect(subject).to eql('Array')
+      expect(subject).to be_eql('Array')
     end
   end
 end
