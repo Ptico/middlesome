@@ -1,15 +1,15 @@
 require 'forwardable'
 
-require 'middlesome/middleware_wrapper'
+require 'middlesome/wrapper'
 
 module Middlesome
 
   ##
-  # Class: Middleware stack
+  # Class: Middleware manager
   #
   # Implements: Enumerable
   #
-  class Stack
+  class Manager
     include ::Enumerable
     extend ::Forwardable
 
@@ -18,7 +18,7 @@ module Middlesome
     def_delegators :middlewares, :[], :length
 
     ##
-    # Push middleware to the stack
+    # Push middleware to the manager
     #
     # Middleware can be added by full constant name. In this case
     # it will be lazy initialized later
@@ -34,7 +34,7 @@ module Middlesome
     end
 
     ##
-    # Insert middleware before another, already presented in stack
+    # Insert middleware before another, already presented in manager
     #
     # Params:
     # - one_middleware     {Class|String|Symbol} Existing middleware
@@ -44,11 +44,11 @@ module Middlesome
     # Yields: Middleware initialization block
     #
     def insert_before(one_middleware, another_middleware, *args, &block)
-      
+
     end
 
     ##
-    # Insert middleware after another, already presented in stack
+    # Insert middleware after another, already presented in manager
     #
     # Params:
     # - one_middleware     {Class|String|Symbol} Existing middleware
@@ -58,7 +58,7 @@ module Middlesome
     # Yields: Middleware initialization block
     #
     def insert_after(one_middleware, another_middleware, *args, &block)
-      
+
     end
 
     ##
@@ -72,17 +72,17 @@ module Middlesome
     # Yields: Replacement middleware initialization block
     #
     def replace(one_middleware, with_middleware, *args, &block)
-      
+
     end
 
     ##
-    # Delete middleware from stack
+    # Delete middleware from manager
     #
     # Params:
     # - middleware {Class|String|Symbol} Middleware to remove
     #
     def delete(middleware)
-      
+
     end
 
     ##
@@ -97,7 +97,7 @@ module Middlesome
     # Yields: conditional block
     #
     def delete_all(middleware, &block)
-      
+
     end
 
   private
@@ -107,7 +107,7 @@ module Middlesome
     end
 
     def wrap(middleware, *args, &block)
-      MiddlewareWrapper.new(middleware, *args, &block)
+      Wrapper.new(middleware, *args, &block)
     end
 
   end

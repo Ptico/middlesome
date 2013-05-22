@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'shared/middlewares'
 
-describe Middlesome::MiddlewareWrapper, '#object' do
+describe Middlesome::Wrapper, '#object' do
   let(:subject) { described_class.new(obj).object }
 
   context 'when string' do

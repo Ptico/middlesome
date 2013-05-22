@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Middlesome::MiddlewareWrapper, '#args' do
+describe Middlesome::Wrapper, '#args' do
   let(:subject) { described_class.new('Foo', *arguments).args }
 
   context 'when no arguments' do
@@ -13,7 +13,7 @@ describe Middlesome::MiddlewareWrapper, '#args' do
 
   context 'when one argument' do
     let(:arguments) { 'foo' }
-  
+
     it 'should have one argument' do
       expect(subject).to be_eql(['foo'])
     end

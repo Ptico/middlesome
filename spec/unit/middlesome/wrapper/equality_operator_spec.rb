@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'shared/middlewares'
 
-describe Middlesome::MiddlewareWrapper, '#==' do
+describe Middlesome::Wrapper, '#==' do
 
   shared_examples_for 'equality operator' do
     context 'when equal' do

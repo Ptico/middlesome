@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Middlesome::Stack, '#use' do
+describe Middlesome::Manager, '#use' do
   let(:instance) { described_class.new }
 
   it 'should push middlewares to stack' do
