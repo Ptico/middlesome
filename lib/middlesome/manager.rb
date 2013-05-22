@@ -29,9 +29,10 @@ module Middlesome
     #
     # Yields: Middleware initialization block
     #
-    def use(middleware, *args, &block)
+    def push(middleware, *args, &block)
       middlewares << wrap(middleware, *args, &block)
     end
+    alias :use :push
 
     ##
     # Insert middleware before another, already presented in manager
