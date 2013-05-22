@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Middlesome::Middleware, '#block' do
+describe Middlesome::MiddlewareWrapper, '#block' do
   let(:subject)  { instance.block }
 
   context 'when block received' do

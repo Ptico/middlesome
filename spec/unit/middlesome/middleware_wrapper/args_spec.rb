@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Middlesome::Middleware, '#args' do
+describe Middlesome::MiddlewareWrapper, '#args' do
   let(:subject) { described_class.new('Foo', *arguments).args }
 
   context 'when no arguments' do

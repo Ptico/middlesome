@@ -3,7 +3,7 @@ module Middlesome
   ##
   # Private Class: Middleware wrapper
   #
-  class Middleware
+  class MiddlewareWrapper
 
     ##
     # Middleware class name
@@ -45,7 +45,7 @@ module Middlesome
     #
     def ==(middleware)
       case middleware
-        when Middleware
+        when MiddlewareWrapper
           if object && middleware.object
             object == middleware.object
           else
@@ -71,7 +71,7 @@ module Middlesome
     # Returns: {Boolean}
     #
     def equal?(middleware, *margs, &mblock)
-      middleware = Middleware.new(middleware, *margs, &mblock) unless middleware.is_a?(Middleware)
+      middleware = MiddlewareWrapper.new(middleware, *margs, &mblock) unless middleware.is_a?(MiddlewareWrapper)
       self == middleware && args == middleware.args && block.nil? == middleware.block.nil?
     end
 

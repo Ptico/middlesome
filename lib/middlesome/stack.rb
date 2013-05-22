@@ -1,6 +1,6 @@
 require 'forwardable'
 
-require 'middlesome/middleware'
+require 'middlesome/middleware_wrapper'
 
 module Middlesome
 
@@ -30,7 +30,7 @@ module Middlesome
     # Yields: Middleware initialization block
     #
     def use(middleware, *args, &block)
-      middlewares << Middleware.new(middleware, *args, &block)
+      middlewares << wrap(middleware, *args, &block)
     end
 
     ##
@@ -104,6 +104,10 @@ module Middlesome
 
     def initialize
       @middlewares = []
+    end
+
+    def wrap(middleware, *args, &block)
+      MiddlewareWrapper.new(middleware, *args, &block)
     end
 
   end
