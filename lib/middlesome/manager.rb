@@ -45,7 +45,8 @@ module Middlesome
     # Yields: Middleware initialization block
     #
     def insert_before(one_middleware, another_middleware, *args, &block)
-      middlewares
+      i = middlewares.index(one_middleware)
+      middlewares.insert(i, wrap(another_middleware, *args, &block))
     end
 
     ##
@@ -59,7 +60,8 @@ module Middlesome
     # Yields: Middleware initialization block
     #
     def insert_after(one_middleware, another_middleware, *args, &block)
-
+      i = middlewares.rindex(one_middleware)
+      middlewares.insert(i + 1, wrap(another_middleware, *args, &block))
     end
 
     ##
