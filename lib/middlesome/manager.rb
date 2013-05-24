@@ -45,7 +45,7 @@ module Middlesome
     # Yields: Middleware initialization block
     #
     def insert_before(one_middleware, another_middleware, *args, &block)
-
+      middlewares
     end
 
     ##
