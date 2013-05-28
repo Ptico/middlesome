@@ -1,10 +1,7 @@
 require 'spec_helper'
 
 describe Middlesome::Manager, '#push' do
-  let(:instance) { described_class.new }
-  let(:names)    { instance.middlewares.map(&:name) }
-  let(:middleware_one) { instance[0] }
-  let(:middleware_two) { instance[1] }
+  include_context 'manager_context'
 
   it 'should push middlewares to stack' do
     instance.push(:MiddlewareOne)

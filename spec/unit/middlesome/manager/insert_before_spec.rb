@@ -2,9 +2,7 @@ require 'spec_helper'
 require 'shared/middlewares'
 
 describe Middlesome::Manager, '#insert_before' do
-  let(:instance)   { described_class.new }
-  let(:names)      { instance.middlewares.map(&:name) }
-  let(:middleware) { instance[0] }
+  include_context 'manager_context'
 
   before do
     instance.push('M1')
@@ -40,19 +38,19 @@ describe Middlesome::Manager, '#insert_before' do
   it 'should pass arguments for middleware' do
     instance.insert_before(:M1, :M3, 'foo', 'bar')
 
-    expect(middleware.args).to eql(['foo', 'bar'])
+    expect(middleware_one.args).to eql(['foo', 'bar'])
   end
 
   it 'should pass block for middleware' do
     instance.insert_before(:M1, :M3) { puts }
 
-    expect(middleware.block).to be_a(Proc)
+    expect(middleware_one.block).to be_a(Proc)
   end
 
   it 'should pass both args and block' do
     instance.insert_before(:M1, :M3, 'foo', 'bar') { puts }
 
-    expect(middleware.block).to be_a(Proc)
-    expect(middleware.args).to  eql(['foo', 'bar'])
+    expect(middleware_one.block).to be_a(Proc)
+    expect(middleware_one.args).to  eql(['foo', 'bar'])
   end
 end

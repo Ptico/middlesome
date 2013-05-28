@@ -15,7 +15,7 @@ module Middlesome
 
     attr_reader :middlewares
 
-    def_delegators :middlewares, :[], :length
+    def_delegators :middlewares, :[], :length, :each
 
     ##
     # Push middleware to the manager
@@ -75,7 +75,8 @@ module Middlesome
     # Yields: Replacement middleware initialization block
     #
     def replace(one_middleware, with_middleware, *args, &block)
-
+      i = middlewares.index(one_middleware)
+      middlewares[i] = wrap(with_middleware, *args, &block)
     end
 
     ##
@@ -85,7 +86,9 @@ module Middlesome
     # - middleware {Class|String|Symbol} Middleware to remove
     #
     def delete(middleware)
-
+      if i = middlewares.index(middleware)
+        middlewares.delete_at(i)
+      end
     end
 
     ##
@@ -99,8 +102,8 @@ module Middlesome
     #
     # Yields: conditional block
     #
-    def delete_all(middleware, &block)
-
+    def delete_all(middleware=nil, &block)
+      middlewares.delete(middleware) if middleware
     end
 
   private
