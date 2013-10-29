@@ -19,4 +19,5 @@ describe Middlesome::Wrapper, '#object' do
       expect(subject).to be_eql(MiddlewareOne)
     end
   end
+
 end

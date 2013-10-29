@@ -94,19 +94,23 @@ module Middlesome
     ##
     # Delete multiple middlewares
     #
-    # Delete all middlewares for which `block` is false or which name/class
+    # Delete all middlewares which name/class
     # matches `middleware` argument
     #
     # Params:
     # - middleware {Class|String|Symbol} Middleware class/name (optional)
     #
-    # Yields: conditional block
-    #
-    def delete_all(middleware=nil, &block)
-      middlewares.delete(middleware) if middleware
+    def delete_all(middleware=nil)
+      if middleware
+        middlewares.delete(middleware)
+      else
+        self.middlewares = []
+      end
     end
 
   private
+
+    attr_writer :middlewares
 
     def initialize
       @middlewares = []

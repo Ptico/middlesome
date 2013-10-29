@@ -21,8 +21,8 @@ class Default < Thor
   end
 
   desc 'mutant [NAMESPACE]', 'Run mutation tests for NAMESPACE'
-  def mutant(namespace=nil)
-    Mutant::CLI.run(%W(-I lib -r middlesome --rspec-dm2 ::Middlesome#{namespace}))
+  def mutant(namespace='*')
+    Mutant::CLI.run(%W(--include lib --require middlesome ::Middlesome#{namespace} --rspec))
   end
 
   desc 'build', "Build middlesome-#{Middlesome::VERSION}.gem into the pkg directory"

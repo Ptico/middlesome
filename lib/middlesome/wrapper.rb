@@ -85,7 +85,9 @@ module Middlesome
     # Returns: {Class}
     #
     def middleware_class
-      @object ||= constantize_name
+      Mutex.new.synchronize do
+        @object ||= constantize_name
+      end
     end
 
   private
@@ -100,12 +102,9 @@ module Middlesome
     # Yields: block for middleware instance
     #
     def initialize(object, *args, &block)
-      if object.respond_to?(:name)
-        name    = object.name
-        @object = object
-      else
-        name = object.to_s
-      end
+      name = has_name?(object) ? object.name : object.to_s
+
+      @object = object if !string_like?(object)
 
       @name = normalize(name)
       @args, @block = args, block
@@ -123,12 +122,26 @@ module Middlesome
     end
 
     ##
-    # Get constant from name
+    # Private: Get constant from name
     #
     def constantize_name
-      name.split('::').inject(Object) do |prev, name|
-        prev.const_get(name)
+      name.split('::').inject(Object) do |prev, part|
+        prev.const_get(part)
       end
+    end
+
+    ##
+    # Private: Object or string representation?
+    #
+    def string_like?(obj)
+      obj.kind_of?(String) || obj.kind_of?(Symbol)
+    end
+
+    ##
+    # Private: Detect if has name and name is valid
+    #
+    def has_name?(obj)
+      obj.respond_to?(:name) && !!obj.name && !obj.name.empty?
     end
 
   end

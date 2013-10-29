@@ -6,5 +6,5 @@ gemspec
 group :dev do
   gem 'pry'
   gem 'pelusa', platforms: :rbx
-  gem 'mutant', platforms: [:mri_19, :rbx]
+  gem 'mutant', '~> 0.3.0.rc3', platforms: [:mri_19, :mri_20, :rbx]
 end

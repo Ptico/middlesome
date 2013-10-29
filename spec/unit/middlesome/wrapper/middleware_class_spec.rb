@@ -1,13 +1,14 @@
 require 'spec_helper'
 
 describe Middlesome::Wrapper, '#middleware_class' do
-  let(:subject) { described_class.new(obj).middleware_class }
+  let(:instance) { described_class.new(obj)  }
+  let(:subject)  { instance.middleware_class }
 
   context 'when with object' do
     let(:obj) { Object::Hash }
 
     it 'should return class' do
-      expect(subject).to be_eql(Object::Hash)
+      expect(subject).to be_equal(Object::Hash)
     end
   end
 
@@ -15,7 +16,12 @@ describe Middlesome::Wrapper, '#middleware_class' do
     let(:obj) { 'Object::Hash' }
 
     it 'should return class' do
-      expect(subject).to be_eql(Object::Hash)
+      expect(subject).to be_equal(Object::Hash)
+    end
+
+    it 'should assign object' do
+      subject
+      expect(instance.object).to be_equal(Object::Hash)
     end
   end
 

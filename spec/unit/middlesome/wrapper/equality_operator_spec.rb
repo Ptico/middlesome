@@ -71,10 +71,42 @@ describe Middlesome::Wrapper, '#==' do
       it_should_behave_like 'equality operator'
     end
 
+    context 'when normall class and class with custom name' do
+      let(:obj_one)   { MiddlewareOne   }
+      let(:obj_two)   { MiddlewareOne   }
+      let(:obj_three) { MiddlewareThree }
+
+      it_should_behave_like 'equality operator'
+    end
+
+    context 'when classes with empty string name' do
+      let(:obj_one)   { MiddlewareFour   }
+      let(:obj_two)   { 'MiddlewareFour' }
+      let(:obj_three) { MiddlewareTwo    }
+
+      it_should_behave_like 'equality operator'
+    end
+
+    context 'when classes with modified .to_s' do
+      let(:obj_one)   { MiddlewareFive   }
+      let(:obj_two)   { 'MiddlewareFive' }
+      let(:obj_three) { MiddlewareTwo    }
+
+      it_should_behave_like 'equality operator'
+    end
+
     context 'when class with string' do
       let(:obj_one)   { MiddlewareOne   }
       let(:obj_two)   { 'MiddlewareOne' }
       let(:obj_three) { 'MiddlewareTwo' }
+
+      it_should_behave_like 'equality operator'
+    end
+
+    context 'when class with symbol' do
+      let(:obj_one)   { MiddlewareOne  }
+      let(:obj_two)   { :MiddlewareOne }
+      let(:obj_three) { :MiddlewareTwo }
 
       it_should_behave_like 'equality operator'
     end
@@ -95,8 +127,16 @@ describe Middlesome::Wrapper, '#==' do
       it_should_behave_like 'equality operator'
     end
 
-    context 'when with global const string' do
+    context 'when string with symbol' do
       let(:obj_one)   { 'MiddlewareOne' }
+      let(:obj_two)   { :MiddlewareOne  }
+      let(:obj_three) { :MiddlewareTwo  }
+
+      it_should_behave_like 'equality operator'
+    end
+
+    context 'when with global const string' do
+      let(:obj_one)   { 'MiddlewareOne'   }
       let(:obj_two)   { '::MiddlewareOne' }
       let(:obj_three) { '::MiddlewareTwo' }
 
