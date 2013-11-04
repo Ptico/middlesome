@@ -1,9 +1,10 @@
 # Middlesome
 
+- [![Build Status](https://travis-ci.org/Ptico/middlesome.png)](https://travis-ci.org/Ptico/middlesome)
 - [![Code Climate](https://codeclimate.com/github/Ptico/middlesome.png)](https://codeclimate.com/github/Ptico/middlesome)
 
 
-TODO: Write a gem description
+Standalone middleware manager
 
 ## Installation
 
@@ -21,7 +22,37 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+stack = Middlesome::Stack.new
+stack.middlewares do
+  use Rack::Logger
+  use Rack::Cookies
+end
+
+stack.middlewares :development do
+  use Rack::Debug, socket_path: '/tmp/rack-debug'
+end
+
+stack.middlewares :production do
+  insert_before Rack::Logger, Rack::Auth::Basic, do |username, password|
+    'secret' == password
+  end
+
+  delete_all Rack::Debug # Just in case
+end
+
+app = stack.build(Rack::Lobster.new, :production)
+```
+
+## Available manipulations
+
+- `push(middleware, *args, &block)` alias `use(middleware, *args, &block)`
+- `insert_before(one_middleware, another_middleware, *args, &block)`
+- `insert_after(one_middleware, another_middleware, *args, &block)`
+- `replace(one_middleware, with_middleware, *args, &block)`
+- `delete(middleware)`
+- `delete_all()`
+- `delete_all(by_name)`
 
 ## Contributing
 
