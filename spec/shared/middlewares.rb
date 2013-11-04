@@ -1,6 +1,6 @@
 class TestMiddleware < Struct.new(:app, :opt1, :opt2)
   def call(env)
-    env << self.class.name
+    env << self.class.to_s
     env << opt1 if opt1
     env << opt2 if opt2
     app.call(env)

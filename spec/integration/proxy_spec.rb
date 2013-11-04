@@ -5,7 +5,7 @@ describe Middlesome::Proxy do
   let(:proxy)   { described_class.new }
   let(:subject) { proxy.merge_into(manager).middlewares.map(&:name) }
 
-  before do
+  before :each do
     manager.push(:M1)
     manager.push(:M2)
     manager.push(:M3)
