@@ -6,3 +6,4 @@ end
 
 require 'middlesome/wrapper'
 require 'middlesome/manager'
+require 'middlesome/proxy'
